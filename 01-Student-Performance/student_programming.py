@@ -75,3 +75,43 @@ plt.show()
 
 
 
+
+# 3. adım
+# ADIM 3 -- Veriyi Modelleme İçin Hazırlama
+
+# 3.1 Sütun isimlerini görelim
+print("Sütunlar:", df.columns.tolist())
+
+# 3.2 Kategorik değişkenleri sayısal hale getirelim
+df_encoded = pd.get_dummies(df, drop_first=True)
+
+print("\n=== ENCODE EDİLMİŞ VERİ ===")
+print(df_encoded.columns.tolist())
+
+print("\n=== YENİ BOYUT ===")
+print(f"Satır sayısı  : {df_encoded.shape[0]}")
+print(f"Sütun sayısı  : {df_encoded.shape[1]}")
+
+# 3.3 Hedef değişkeni tanımlayalım
+# veriyi eğiteceğiz
+X=df_encoded.drop(['math score'], axis=1)  # Bağımsız değişkenler
+y=df_encoded['math score']  # Hedef değişken
+
+print("\n=== BAĞIMSIZ DEĞİŞKENLER ===")
+print(X.columns.tolist()),print(X.shape)
+print("\n=== HEDEF DEĞİŞKEN ===")
+print(y.name),print(y.shape)
+
+# 3.4 Train/Test olarak Böl
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)   
+print("\n=== EĞİTİM VE TEST SETLERİ ===")
+print(f"X_train boyutu: {X_train.shape[0]} öğrenci")
+print(f"Test seti : {X_test.shape[0]} öğrenci")
+
+
+
+
+
+
