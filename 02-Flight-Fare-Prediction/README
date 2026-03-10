@@ -1,0 +1,39 @@
+#  Flight Fare Prediction
+
+##  Proje Hakkında
+Uçuş özelliklerine göre bilet fiyatını
+tahmin eden makine öğrenimi modeli.
+
+##  Veri Seti
+- Kaynak: Kaggle - Flight Fare Prediction
+- ~11.000 uçuş kaydı
+- Özellikler: havayolu, kalkış/varış şehri,
+  tarih, saat, aktarma sayısı, süre
+
+##  Proje Adımları
+- [x] Veri yükleme ve EDA
+- [x] Veri temizleme
+- [x] Kategorik veri hazırlama
+- [x] Model kurma ve eğitme
+- [x] Görselleştirme
+
+##  Model Sonuçları
+| Model | R² | RMSE |
+|-------|----|------|
+| Linear Regression | ? | ? |
+| Decision Tree | ? | ? |
+| Random Forest | ? | ? |
+
+##  En İyi Model
+- Model: Random Forest
+- R²  : ?
+- RMSE: ? ₹
+
+##  Teknolojiler
+- Python, Pandas, NumPy
+- Scikit-learn
+- Matplotlib, Seaborn
+
+##  Nasıl Çalıştırılır?
+pip install pandas scikit-learn matplotlib seaborn openpyxl
+python flight_fare.py
