@@ -1,53 +1,42 @@
-#  Student Performance Analysis
+#  Student Performance Prediction
 
-<<<<<<< HEAD
-## Proje Hakkında
-=======
 ##  Proje Hakkında
->>>>>>> 924d33518c47228eb64edf74c4b61d4ace9020da
 Bu proje, öğrencilerin matematik, okuma ve yazma notlarını
-analiz ederek performanslarını incelemeyi amaçlamaktadır.
-Makine öğrenimi teknikleri kullanılarak not tahmini yapılacaktır.
+etkileyen faktörleri analiz ederek makine öğrenimi ile
+not tahmini yapmaktadır.
 
 ##  Veri Seti
 - Kaynak: Kaggle - Students Performance in Exams
-- 1000 öğrenci
-- 8 özellik: cinsiyet, etnik köken, ebeveyn eğitim durumu,
+- 1000 öğrenci, 8 özellik
+- Özellikler: cinsiyet, etnik köken, ebeveyn eğitim durumu,
   öğle yemeği, test hazırlık kursu, matematik/okuma/yazma notu
 
-<<<<<<< HEAD
-## Kullanılan Teknolojiler
-=======
+##  Proje Adımları
+- [x] Veri yükleme ve EDA
+- [x] Görselleştirme
+- [x] Veri hazırlama (kategorik → sayısal)
+- [x] Model kurma ve eğitme
+- [x] Sonuçları değerlendirme
+
+##  Kullanılan Modeller
+| Model | R² Skoru | RMSE |
+|-------|----------|------|
+| Linear Regression | 0.87 | 5.20 |
+| Decision Tree | 0.79 | 6.80 |
+| Random Forest | 0.91 | 4.40 |
+
+##  En İyi Model
+- **Random Forest**
+- R² : 0.91 → notların %91'ini doğru açıklıyor
+- RMSE: 4.40 → tahminler ortalama 4.4 puan yanılıyor
+
 ##  Kullanılan Teknolojiler
->>>>>>> 924d33518c47228eb64edf74c4b61d4ace9020da
 - Python 3.x
 - Pandas
 - Scikit-learn
 - Matplotlib & Seaborn
+- NumPy
 
-
-## Proje Adımları
-=======
-##  Proje Adımları
-
-- [x] Veri yükleme
-- [x] Veri tanıma (EDA)
-- [ ] Veri görselleştirme
-- [ ] Veri temizleme ve hazırlama
-- [ ] Model kurma ve eğitme
-- [ ] Sonuçları değerlendirme
-
-
-## Nasıl Çalıştırılır?
-=======
 ##  Nasıl Çalıştırılır?
-
-pip install pandas scikit-learn matplotlib seaborn
-python student_performance.py
-
-## Sonuçlar
-
-- Çalışmalar devam ediyor...
-=======
-- Çalışmalar devam ediyor...
-
+pip install pandas scikit-learn matplotlib seaborn numpy
+python student_programming.py
