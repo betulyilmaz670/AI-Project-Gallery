@@ -1,0 +1,44 @@
+# 🏠 Airbnb Price Prediction
+
+## 📌 Proje Hakkında
+New York City'deki Airbnb ilanlarının özelliklerine
+göre gecelik fiyatı tahmin eden makine öğrenimi modeli.
+
+## 📊 Veri Seti
+- Kaynak: Kaggle - New York City Airbnb Open Data
+- ~46.000 ilan
+- Özellikler: bölge, oda tipi, minimum gece,
+  yorum sayısı, müsaitlik durumu
+
+## 🔍 Proje Adımları
+- [x] Veri yükleme ve EDA
+- [x] Veri temizleme ve aykırı değer tespiti
+- [x] Kategorik veri hazırlama
+- [x] Model kurma ve eğitme
+- [x] Görselleştirme ve değerlendirme
+
+## 🤖 Model Sonuçları
+ | Model |           R² | RMSE |
+| Linear Regression | 0.3182 | 93.55 |
+| Decision Tree     | -0.13333 | 120.62 |
+| Random Forest     | 0.4393 | 84.84 |
+
+## En İyi Model
+- Model: Random Forest
+- R²  : 0.4393
+- RMSE: 84.84 $
+
+## Önemli Bulgular
+- Manhattan en pahalı bölge
+- Tüm ev ilanları özel odadan daha pahalı
+- Yorum sayısı fiyatı olumsuz etkiliyor
+
+## Teknolojiler
+- Python 3.x
+- Pandas, NumPy
+- Scikit-learn
+- Matplotlib, Seaborn
+
+## Nasıl Çalıştırılır?
+pip install pandas scikit-learn matplotlib seaborn numpy
+python airbnb.py
