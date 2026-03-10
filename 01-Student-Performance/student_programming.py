@@ -28,3 +28,50 @@ print(df.isnull().sum())
 # count, mean, std, min, max gibi değerleri gösterir
 print("\n=== İSTATİSTİKLER ===")
 print(df.describe())
+
+
+# 2. adım
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+
+# ADIM 2 -- GÖRSELLEŞTİRME
+# Amacımız:Veriyi gözle görmek
+# Hangi faktörler notu etkiliyor
+
+
+# 2.1 Matematik notlarının dağılımını gösteren histogram
+# Notlar nasıl değişmiş bakalım
+plt.figure(figsize=(10, 4))
+sns.histplot(df['math score'], bins=20,color='blue',kde=True)
+plt.title('Matematik Notlarının Dağılımı')
+plt.xlabel('Matematik Notu')
+plt.ylabel('Öprenci Sayısı')
+plt.show()
+
+# 2.2 Cinsiyete göre notlar
+# kız ve erkek öğrencilerin notları arasında fark var mı?
+plt.figure(figsize=(10, 4))
+sns.boxplot(x='gender', y='math score', data=df)
+plt.title('Cinsiyete Göre Matematik Notları')
+plt.show()
+
+
+# 2.3 Test hazırlık kursunun etkisi
+# Kursa katılanlar başarılı mı
+plt.figure(figsize=(10, 4))
+sns.boxplot(x='test preparation course', y='math score', data=df)
+# sns.histplot(df['math score'], bins=20,color='blue',kde=True) 
+plt.title('Test Hazırlık Kursunun Notlara Etkisi')
+plt.show()
+
+# 2.4 Kolerasyon Haritası
+# Hangi faktörler birbirine bağlı?
+plt.figure(figsize=(8,6))
+sns.heatmap(df[['math score', 'reading score', 'writing score']].corr(), annot=True, cmap='coolwarm',fmt='.2f')
+plt.title('Notlar Arası Korelasyon')
+plt.show()
+
+
+
