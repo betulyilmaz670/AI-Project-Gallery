@@ -152,5 +152,54 @@ print(f"R²: {sonuclar[en_iyi]['R²']}")
 print(f"RSME: {sonuclar[en_iyi]['RSME']}")
 
 
+# ADIM 5 -- SONUÇLARI DEĞERLENDİRELİM
+# Amacımız:en iyi modeli seçip tahminleri görsel olarak karşılaştırmak
+
+# 5.1 Model karşılaştırma tablosu
+print("\n=== MODEL KARŞILAŞTIRMASI ===")
+print(f"{'Model':<25} {'R²':>8} {'RSME':>8}")
+print("-"*45)
+for isim, skorlar in sonuclar.items():
+    print(f"{isim:<25} {skorlar['R²']:>8.4f} {skorlar['RSME']:>8.4f}")
+
+# 5.2 en iyi modelleme tahmin grafiği
+# Gerçek değerler vs Tahmin edilen değerler
+en_iyi_model = modeller[en_iyi]
+y_pred_en_iyi = en_iyi_model.predict(X_test)
+
+plt.figure(figsize=(8, 6))
+plt.scatter(y_test, y_pred_en_iyi, color='blue', alpha=0.5)
+
+# Mükemmel tahmin çizgisi-bütüj noktalar burada olsaydı model mükemmeldi
+plt.plot([y.min(), y.max()], [y.min(), y.max()], color='red', linewidth=2, label='Mükemmel Tahmin')
+
+plt.xlabel('Gerçek Notlar')
+plt.ylabel('Tahmin Edilen Notlar')
+plt.title(f'{en_iyi} Tahminleri vs Gerçek Notlar')
+plt.legend()
+plt.show()
+
+# 5.3 Random Forest -- önemli ozellikler
+# Hangi özellik notu en çok etkiliyor
+rf_model = modeller['Random Forest']
+
+plt.figure(figsize=(10, 6))
+onem=pd.Series(rf_model.feature_importances_, index=X.columns).sort_values(ascending=True)
+
+onem.plot(kind='barh', color='green')
+plt.title('Notu en çok etkileyen özellikler')
+plt.xlabel('Önem skoru')
+plt.tight_layout()
+plt.show()
 
 
+# 5.4 Örnek tahmin yap
+# Yeni öğrenci için not tahmini
+print("\n=== ÖRNEK TAHMİN ===")
+yeni_ogrenci = X_test.iloc[0:1]  # Test setinden bir öğrenci alalım
+tahmin = en_iyi_model.predict(yeni_ogrenci)
+gercek = y_test.iloc[0]
+
+print(f"Gerçek Not: {gercek:.1f}")
+print(f"Tahmin Edilen Not: {tahmin[0]:.1f}")
+print(f"Fark: {abs(gercek - tahmin[0]):.1f} puan")
