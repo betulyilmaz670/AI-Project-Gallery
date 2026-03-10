@@ -112,6 +112,45 @@ print(f"Test seti : {X_test.shape[0]} öğrenci")
 
 
 
+# ADIM 4 -- MODEL KUR VE EĞİT
+from sklearn.linear_model import LinearRegression
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import r2_score, mean_squared_error
+import numpy as np
+
+# 4.1 Modeli tanımlayalım
+# Her modeli bir sözcükte tutacağım
+# Böylece tek bir döngüde test edebileceğiz
+modeller = {
+    'Linear Regression': LinearRegression(),
+    'Decision Tree': DecisionTreeRegressor(random_state=42),
+    'Random Forest': RandomForestRegressor(random_state=42)
+}
+
+# 4.2 Her modeli eğitelim ve tahmin yapalım
+sonuclar = {}
+for isim, model in modeller.items():
+    model.fit(X_train, y_train)  # Modeli eğit
+    y_pred = model.predict(X_test)  # Test seti üzerinde tahmin yap
+    r2 = r2_score(y_test, y_pred)  # R² skorunu hesapla
+    rsme= np.sqrt(mean_squared_error(y_test, y_pred))  # RSME hesapla
+    sonuclar[isim] = {'R²': round(r2, 4), 'RSME': round(rsme, 4)}  # Sonuçları kaydet
+   
+   
+    print(f"{'='*40}")
+    print(f"Model: {isim}")
+    print(f"R² Score: {r2:.4f} ne kadar yakınsa o kadar iyi")
+    print(f"RSME: {rsme:.4f} ne kadar küçükse o kadar iyi")
+
+
+    # 4.3 En iyi modeli bul 
+en_iyi=max(sonuclar, key=lambda x: sonuclar[x]['R²'])
+print(f"n{'='*40}")
+print(f"En İyi Model: {en_iyi}")
+print(f"R²: {sonuclar[en_iyi]['R²']}")
+print(f"RSME: {sonuclar[en_iyi]['RSME']}")
+
 
 
 
